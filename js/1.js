@@ -2,7 +2,7 @@ let car = {
     manufacturer: "Rolls-Royse",
     model: "Ghost",
     year: 2009,
-    AverageSpeed: 150
+    AverageSpeed: 150,
 };
 
 function Info(obj) {
