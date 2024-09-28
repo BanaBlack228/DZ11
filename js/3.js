@@ -1,4 +1,4 @@
-var time = {
+let time = {
     hh : 20,
     mm : 30,
     ss : 45
@@ -16,12 +16,8 @@ function showTime() {
 
 function setSecond(second) {
 
-    // Проверяем нужно ли менять минуты.
     if (time.ss + second > 59) {
-        // узнать сколько минут
-        var mm = Math.floor(second / 60);
-
-        // и сколько секунд оставить
+        let mm = Math.floor(second / 60);
         if (mm == 0) {
             setMinute(1);
             second = (time.ss + second) - 60;
@@ -34,18 +30,13 @@ function setSecond(second) {
         }
     }
 
-    // Меняем секунды.
     time.ss += second;
 }
 
 function setMinute(minute) {
 
-    // Проверяем нужно ли менять часы.
     if (time.mm + minute > 59) {
-        // узнать сколько часов
-        var hh = Math.floor(minute / 60);
-
-        // и сколько минут оставить
+        let hh = Math.floor(minute / 60);
         if (hh == 0) {
             setHour(1);
             minute = (time.mm + minute) - 60;
@@ -62,13 +53,11 @@ function setMinute(minute) {
 }
 
 function setHour(hour) {
-    // TODO: set hour
-    // Проверяем нужно ли менять счетчик часов.
-    if (time.hh + hour > 23) {
-        // узнать сколько дней (дни не выводим и не меняем).
-        var dd = Math.floor(hour / 24);
 
-        // и сколько минут оставить
+    if (time.hh + hour > 23) {
+
+        let dd = Math.floor(hour / 24);
+
         if (dd == 0) {
             hour = (time.hh + hour) - 24;
             time.hh = 0;
@@ -85,7 +74,7 @@ function setHour(hour) {
 
 
 function changeSeconds() {
-    var ss = prompt("Введите кол-во секунд для изменения времени", "");
+    let ss = prompt("Введите кол-во секунд для изменения времени", "");
 
     setSecond(+ss);
 
@@ -93,7 +82,7 @@ function changeSeconds() {
 }
 
 function changeMinutes() {
-    var mm = prompt("Введите кол-во минут для изменения времени", "");
+    let mm = prompt("Введите кол-во минут для изменения времени", "");
 
     setMinute(+mm);
 
@@ -101,7 +90,7 @@ function changeMinutes() {
 }
 
 function changeHours() {
-    var hh = prompt("Введите кол-во часов для изменения времени", "");
+    let hh = prompt("Введите кол-во часов для изменения времени", "");
 
     setHour(+hh);
 

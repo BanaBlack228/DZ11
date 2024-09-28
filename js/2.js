@@ -8,62 +8,52 @@ fractionTwo.denomerator = 2;
 
 let fractionAnswer = {};
 
-// Вывод объекта дроби.
 function showFraction(obj) {
     return obj.numerator + "/" + obj.denomerator;
 }
 
-
-// Нахождение общего знаменателя.
 function commonDenom(obj1, obj2) {
-    var temp_den = obj1.denomerator;	// переменная для хранения знаменателя		// присваиваем ей знаменатель 1й дроби
-    // 1й числ = умножаем 1й числитель на 2й знаменатель
+    let temp_den = obj1.denomerator;
     obj1.numerator = obj1.numerator * obj2.denomerator;		
-    // 1й знам = умножаем 1й знаменатель на 2й знаменатель
     obj1.denomerator = obj1.denomerator * obj2.denomerator;
-    // 2й числ = умножаем 2й числитель на 1й знаменатель (сохраненный в t_den)
     obj2.numerator = obj2.numerator * temp_den;
-    // 2й знам = умножаем 2й знаменатель на 1й знаменатель (сохраненный в t_den)
     obj2.denomerator = obj2.denomerator * temp_den;
 }
 
-
-// Вычисление суммы.
 function sum(obj1, obj2) {
-    var tempFract = {
+    let tempFract = {
         numerator : 0,
         denomerator : 0
     };
 
-    if (obj1.denomerator != obj2.denomerator) {	// если знаменатели равны
-        commonDenom(obj1, obj2); // передаем ссылки на n и d (вторые числитель и знаменатель) чтобы привести дроби к общему знаменателю
+    if (obj1.denomerator != obj2.denomerator) {
+        commonDenom(obj1, obj2);
     }
 
-    tempFract.numerator = obj1.numerator + obj2.numerator;	// плюсуем числители
+    tempFract.numerator = obj1.numerator + obj2.numerator;
     tempFract.denomerator = obj1.denomerator;
 
     return tempFract;
 }
 
-// Вычисление вычитания.
 function minus(obj1, obj2) {  
-    var tempFract = {
+    let tempFract = {
         numerator : 0,
         denomerator : 0
     };
 
-    if (obj1.denomerator != obj2.denomerator) {	// если знаменатели равны
-        commonDenom(obj1, obj2); // передаем ссылки на n и d (вторые числитель и знаменатель) чтобы привести дроби к общему знаменателю
+    if (obj1.denomerator != obj2.denomerator) {
+        commonDenom(obj1, obj2);
     }
 
-    tempFract.numerator = obj1.numerator - obj2.numerator;	// минусуем числители
+    tempFract.numerator = obj1.numerator - obj2.numerator;
     tempFract.denomerator = obj1.denomerator;
 
     return tempFract;
 }
-// Вычисление умножения.
+
 function multiply(obj1, obj2) {  
-    var tempFract = {
+    let tempFract = {
         numerator : 0,
         denomerator : 0
     };
@@ -75,33 +65,32 @@ function multiply(obj1, obj2) {
 
     return tempFract;
 }
-// Вычисление деления.
+
 function divide(obj1, obj2) {  
-    var tempFract = {
+    let tempFract = {
         numerator : 0,
         denomerator : 0
     };
 
-    tempFract.numerator = obj1.numerator * obj2.denomerator;	// умножаем числитель 1й дроби на знаменатель 2й дроби
-    tempFract.denomerator = obj1.denomerator * obj2.numerator;	// умножаем знаменатель 1й дроби на числитель 2й дроби
+    tempFract.numerator = obj1.numerator * obj2.denomerator;
+    tempFract.denomerator = obj1.denomerator * obj2.numerator;
 
     tempFract = reduction(tempFract);
 
     return tempFract;
 }
-// Сокращение дроби.
+
 function reduction(obj) {
-    var nod = 1;	// наибольший общий делитель (Нод)
-    var tempFract = {
+    let nod = 1;
+    let tempFract = {
         numerator : obj.numerator,
         denomerator : obj.denomerator
     };
-    for (var i = tempFract.numerator; i > 1; i--) {		// проверяем начиная с числителя, до 1
-        if ((tempFract.numerator % i == 0) &&		// если числитель и знаменатель деляться на i без остатка,
-            (tempFract.denomerator % i == 0)) {		// то
-            tempFract.numerator /= i;	// числитель делим на i
-            tempFract.denomerator /= i;	// знаменатель делим на i
-            nod = i;	// запоминаем число на которое делили (Нод)
+    for (let i = tempFract.numerator; i > 1; i--) {
+        if ((tempFract.numerator % i == 0) &&
+            (tempFract.denomerator % i == 0)) {
+            tempFract.numerator /= i;
+            tempFract.denomerator /= i;
         }
     }
 
@@ -109,7 +98,7 @@ function reduction(obj) {
 }
 
 
-// Показать вычисление.
+
 function showCompute(sign) {
 
     switch (sign) {
@@ -127,7 +116,6 @@ function showCompute(sign) {
             break;
         case '=':
             fractionAnswer = reduction(fractionOne);
-            // Выводим результат сокращения
             showReductionResult(fractionOne, fractionAnswer);
             return;
     
@@ -136,7 +124,6 @@ function showCompute(sign) {
             return;
     }
     
-    // Выводим формулу и результат вычисления.
     alert(
         showFraction(fractionOne) 
         + " " + sign + " " 
@@ -147,7 +134,6 @@ function showCompute(sign) {
 }
 
 function showReductionResult(obj1, objAnswer) {
-    // Выводим формулу и результат вычисления.
     alert(
         showFraction(obj1) 
         + " = " 
